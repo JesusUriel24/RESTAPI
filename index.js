@@ -5,8 +5,10 @@ const routerApi = require('./routes');
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
-    res.send('Hola server express');
+    res.send('Hola mi server en express');
 });
 
 app.get('/nueva ruta', (req, res) => {
@@ -28,7 +30,7 @@ routerApi(app);
 //  }
 // });
 
-//  app.get('/categories/categoryid/products/:productId', (req, res) =>{
+//  app.get('/categories/categoryId/products/:productId', (req, res) =>{
 //      const {categoryId, productId} =req.params;
 //      res.json({
 //          categoryId,

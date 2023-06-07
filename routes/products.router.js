@@ -14,16 +14,20 @@ router.get('/filter', (req, res) =>{
     res.send('Yo soy un filter')    
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
     const {id} = req.params.id;
     const product = await service.findOne(id);
     res.json(product);
 });
 
 router.post('/', async (req, res)=> {
+   try{
     const body = req.body;
     const newProduct = await service.create(body);
     res.status(201).json(newProduct);
+   } catch (error){
+    next(error);
+   }
 });
 
 router.patch('/:id', async (req, res)=> {
